@@ -17,55 +17,13 @@ export default function ClientLayout({
     const shouldShowSidebar = !hideSidebarRoutes.includes(pathname);
 
     return (
-        <div className="flex">
-            <AnimatePresence>
-                {shouldShowSidebar && (
-                    <motion.div
-                        initial={{ x: -250 }}
-                        animate={{ x: 0 }}
-                        exit={{ x: -250 }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 100,
-                            damping: 20,
-                        }}
-                        className="z-10"
-                    >
-                        <Sidebar />
-                    </motion.div>
-                )}
-            </AnimatePresence>
+        <div className=" flex h-screen">
+            {shouldShowSidebar && <Sidebar />}
 
-            <main className="flex-1 max-h-screen overflow-y-auto noScrollBar">
-                <AnimatePresence mode="wait">
-                    {shouldShowSidebar && (
-                        <motion.div
-                            key="header"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{
-                                duration: 0.5,
-                                ease: "easeInOut",
-                            }}
-                        >
-                            <Header />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+            <main className="flex-1 flex flex-col overflow-y-auto h-full w-full">
+                {shouldShowSidebar && <Header />}
 
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={pathname}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="p-6"
-                    >
-                        {children}
-                    </motion.div>
-                </AnimatePresence>
+                <div className="pt-4">{children}</div>
             </main>
         </div>
     );

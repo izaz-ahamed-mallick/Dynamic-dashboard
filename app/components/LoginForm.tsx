@@ -29,6 +29,9 @@ const LoginForm = () => {
         const randomToken = nanoid(32);
         localStorage.setItem("mockjwtToken", randomToken);
         localStorage.setItem("userEmail", email);
+        document.cookie = `mockjwtToken=${randomToken}; path=/; max-age=${
+            60 * 60 * 24 * 7
+        };`;
 
         router.replace("/dashboard");
     };

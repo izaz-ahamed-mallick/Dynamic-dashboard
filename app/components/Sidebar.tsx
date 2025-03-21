@@ -35,7 +35,8 @@ const Sidebar = () => {
         { name: "Profile", href: "/profile", icon: <FiUser /> },
     ];
 
-    const isDarkMode = theme === "dark" || systemTheme === "dark";
+    const isDarkMode =
+        theme === "dark" || (theme === "system" && systemTheme === "dark");
 
     return (
         <motion.div
@@ -43,7 +44,7 @@ const Sidebar = () => {
             animate={{ width: isOpen ? 256 : 80 }}
             transition={{
                 duration: 0.6,
-                ease: [0.25, 0.46, 0.45, 0.94], // Smooth cubic bezier curve
+                ease: [0.25, 0.46, 0.45, 0.94],
             }}
             className={`h-screen overflow-hidden transition-all 
                 ${

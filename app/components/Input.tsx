@@ -23,10 +23,7 @@ const Input: React.FC<InputProps> = ({
     return (
         <div className="mb-6">
             {/* Label */}
-            <label
-                className="block mb-2 font-semibold"
-                style={{ color: "var(--foreground)" }}
-            >
+            <label className="block mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
                 {label}
             </label>
 
@@ -36,17 +33,21 @@ const Input: React.FC<InputProps> = ({
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className="w-full p-3 rounded-lg transition-all duration-300 focus:outline-none"
-                style={{
-                    background: "var(--background)",
-                    color: "var(--foreground)",
-                    border: error
-                        ? "1px solid red"
-                        : "1px solid var(--foreground)",
-                    boxShadow: error
-                        ? "0 0 8px rgba(255, 0, 0, 0.5)"
-                        : "0 0 8px var(--foreground)",
-                }}
+                className={`w-full p-4 rounded-lg transition-all duration-300 focus:outline-none 
+                    border-2 
+                    ${
+                        error
+                            ? "border-red-600 focus:border-red-600"
+                            : "border-gray-300 dark:border-gray-700"
+                    }
+                    ${
+                        error
+                            ? "shadow-[0_0_8px_rgba(255,0,0,0.5)]"
+                            : "shadow-lg"
+                    }
+                    focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+                    text-gray-800 dark:text-gray-200
+                    placeholder-gray-500 dark:placeholder-gray-400`}
                 required
             />
 

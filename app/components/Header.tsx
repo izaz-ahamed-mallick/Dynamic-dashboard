@@ -13,11 +13,14 @@ const Header = () => {
     const { theme, systemTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [userInfo, setuserInfo] = useState({ name: "", email: "" });
-    const userEmail = localStorage.getItem("userEmail");
-    if (userEmail) {
-        const userName = extractNameFromEmail(userEmail);
-        setuserInfo({ name: userName, email: userEmail });
-    }
+    useEffect(() => {
+        const userEmail = localStorage.getItem("userEmail");
+
+        if (userEmail) {
+            const userName = extractNameFromEmail(userEmail);
+            setuserInfo({ name: userName, email: userEmail });
+        }
+    }, []);
 
     useEffect(() => {
         setMounted(true);
@@ -27,6 +30,8 @@ const Header = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("mockjwtToken");
+        localStorage.removeItem("userEmail");
+        document.cookie = "mockjwtToken=; path=/; max-age=0;";
         router.push("/");
     };
 
@@ -36,16 +41,18 @@ const Header = () => {
         avatar: "./user.png",
     };
 
-    const isDarkMode = theme === "dark" || systemTheme === "dark";
+    const isDarkMode =
+        theme === "dark" || (theme === "system" && systemTheme === "dark");
 
     return (
         <div
-            className={`flex items-center justify-between p-6 rounded-xl transition-all 
-                        ${
-                            isDarkMode
-                                ? "shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
-                                : "shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
-                        }`}
+            className={`sticky top-0 flex items-center backdrop-blur-xl justify-between p-6 rounded-xl transition-all
+                    z-50
+                    ${
+                        isDarkMode
+                            ? "shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
+                            : "shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
+                    }`}
         >
             {/* User Info */}
             <div className="flex items-center gap-6">
@@ -53,7 +60,7 @@ const Header = () => {
                     src={user.avatar}
                     alt="User Avatar"
                     className="w-16 h-16 rounded-full border-4 border-blue-500 shadow-md 
-                               hover:scale-110 transition-transform"
+                           hover:scale-110 transition-transform "
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                 />
@@ -72,7 +79,7 @@ const Header = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center gap-3 px-5 py-2.5 rounded-lg shadow-md 
-                               bg-red-500 text-white hover:bg-red-600 transition-all"
+                           bg-red-500 text-white hover:bg-red-600 transition-all"
                 >
                     <FiLogOut size={20} />
                     <span>Logout</span>
