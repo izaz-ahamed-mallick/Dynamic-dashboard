@@ -14,12 +14,12 @@ const Pagination = ({
     hasMore,
 }: PaginationProps) => {
     return (
-        <div className="flex justify-between items-center mt-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4">
             {/* Previous Button */}
             <button
                 onClick={() => handlePageChange(initialPage - 1)}
                 disabled={initialPage <= 1}
-                className={`px-4 py-2 rounded-lg transition-all duration-300 
+                className={`w-full sm:w-auto px-4 py-2 rounded-lg transition-all duration-300
                 ${
                     initialPage <= 1
                         ? "bg-gray-500 dark:bg-gray-700 text-gray-300 cursor-not-allowed"
@@ -38,7 +38,7 @@ const Pagination = ({
             <button
                 onClick={() => handlePageChange(initialPage + 1)}
                 disabled={!hasMore}
-                className={`px-4 py-2 rounded-lg transition-all duration-300 
+                className={`w-full sm:w-auto px-4 py-2 rounded-lg transition-all duration-300
                 ${
                     !hasMore
                         ? "bg-gray-500 dark:bg-gray-700 text-gray-300 cursor-not-allowed"

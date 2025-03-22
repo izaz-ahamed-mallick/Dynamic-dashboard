@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Table from "../components/Table";
 import SearchForm from "../components/SearchForm";
 import Pagination from "../components/Pagination";
+
 export interface Post {
     userId: number;
     id: number;
@@ -55,18 +56,29 @@ const DashboardContent: React.FC<Props> = ({ initialPosts }) => {
     };
 
     return (
-        <div>
-            <SearchForm
-                search={search}
-                idFilter={idFilter}
-                onSearch={handleSearch}
-            />
-            <Table columns={["ID", "Title", "Body"]} data={filteredPosts} />
-            <Pagination
-                initialPage={page}
-                hasMore={hasMore}
-                handlePageChange={handlePageChange}
-            />
+        <div className="container mx-auto px-4 py-8">
+            {/* Search Form */}
+            <div className="mb-6">
+                <SearchForm
+                    search={search}
+                    idFilter={idFilter}
+                    onSearch={handleSearch}
+                />
+            </div>
+
+            {/* Table */}
+            <div className="overflow-x-auto sm:overflow-x-hidden">
+                <Table columns={["ID", "Title", "Body"]} data={filteredPosts} />
+            </div>
+
+            {/* Pagination */}
+            <div className="flex justify-center items-center mt-6">
+                <Pagination
+                    initialPage={page}
+                    hasMore={hasMore}
+                    handlePageChange={handlePageChange}
+                />
+            </div>
         </div>
     );
 };

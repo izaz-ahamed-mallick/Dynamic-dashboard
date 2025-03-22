@@ -7,18 +7,19 @@ import { motion } from "framer-motion";
 import ThemeSwitch from "./ThemeSwitch";
 import { useTheme } from "next-themes";
 import { extractNameFromEmail } from "@/utils/extracNameFromEmail";
+import { BsFillPersonFill } from "react-icons/bs";
 
 const Header = () => {
     const router = useRouter();
     const { theme, systemTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
-    const [userInfo, setuserInfo] = useState({ name: "", email: "" });
+    const [userInfo, setUserInfo] = useState({ name: "", email: "" });
+
     useEffect(() => {
         const userEmail = localStorage.getItem("userEmail");
-
         if (userEmail) {
             const userName = extractNameFromEmail(userEmail);
-            setuserInfo({ name: userName, email: userEmail });
+            setUserInfo({ name: userName, email: userEmail });
         }
     }, []);
 
@@ -36,8 +37,8 @@ const Header = () => {
     };
 
     const user = {
-        name: userInfo.name,
-        email: userInfo.email,
+        name: userInfo.name || "Guest",
+        email: userInfo.email || "guest@example.com",
         avatar: "./user.png",
     };
 
@@ -45,28 +46,45 @@ const Header = () => {
         theme === "dark" || (theme === "system" && systemTheme === "dark");
 
     return (
-        <div
-            className={`sticky top-0 flex items-center backdrop-blur-xl justify-between p-6 rounded-xl transition-all
-                    z-50
-                    ${
-                        isDarkMode
-                            ? "shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
-                            : "shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
-                    }`}
+        <motion.header
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className={`sticky top-0 z-50 w-full 
+                ${
+                    isDarkMode
+                        ? "bg-gradient-to-r from-gray-900 to-gray-800 border-gray-700"
+                        : "bg-gradient-to-r from-white to-gray-100 border-gray-300"
+                } 
+                border-b shadow-md px-4 md:px-8 py-4 lg:py-5 flex flex-col md:flex-row 
+                items-center justify-between gap-6 transition-all`}
         >
             {/* User Info */}
-            <div className="flex items-center gap-6">
-                <motion.img
-                    src={user.avatar}
-                    alt="User Avatar"
-                    className="w-16 h-16 rounded-full border-4 border-blue-500 shadow-md 
-                           hover:scale-110 transition-transform "
-                    whileHover={{ scale: 1.1 }}
+            <div className="flex items-center gap-4">
+                <motion.div
+                    className="relative w-14 h-14 md:w-16 md:h-16 rounded-full border-4 border-blue-500 shadow-lg 
+                        hover:rotate-12 transition-all cursor-pointer"
+                    whileHover={{ scale: 1.1, rotate: 12 }}
                     whileTap={{ scale: 0.95 }}
-                />
-                <div>
-                    <p className="text-2xl font-bold">{user.name}</p>
-                    <p className="text-sm opacity-80">{user.email}</p>
+                >
+                    {user.avatar ? (
+                        <img
+                            src={user.avatar}
+                            alt="User Avatar"
+                            className="w-full h-full rounded-full"
+                        />
+                    ) : (
+                        <BsFillPersonFill className="w-full h-full text-gray-400" />
+                    )}
+                </motion.div>
+
+                <div className="text-left">
+                    <p className="text-lg md:text-2xl font-semibold text-blue-400 truncate">
+                        {user.name}
+                    </p>
+                    <p className="text-sm md:text-base text-gray-400 truncate">
+                        {user.email}
+                    </p>
                 </div>
             </div>
 
@@ -76,16 +94,17 @@ const Header = () => {
 
                 <motion.button
                     onClick={handleLogout}
-                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 rounded-lg shadow-md 
+                        bg-red-500 text-white font-medium 
+                        hover:bg-red-600 transition-all"
+                    whileHover={{ scale: 1.05, boxShadow: "0 0 12px #ff4d4d" }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-3 px-5 py-2.5 rounded-lg shadow-md 
-                           bg-red-500 text-white hover:bg-red-600 transition-all"
                 >
                     <FiLogOut size={20} />
                     <span>Logout</span>
                 </motion.button>
             </div>
-        </div>
+        </motion.header>
     );
 };
 

@@ -46,34 +46,36 @@ const Sidebar = () => {
                 duration: 0.6,
                 ease: [0.25, 0.46, 0.45, 0.94],
             }}
-            className={`h-screen overflow-hidden transition-all 
-                ${
-                    isDarkMode
-                        ? "shadow-[8px_0_20px_rgba(0,0,0,0.7)]"
-                        : "shadow-[8px_0_20px_rgba(0,0,0,0.1)]"
-                }`}
+            className={`h-screen overflow-hidden transition-all z-50
+                ${isDarkMode ? "bg-[#161c24]" : "bg-white"}
+                shadow-[8px_0_20px_rgba(0,0,0,0.1)]
+                lg:w-[${isOpen ? "256px" : "80px"}] md:w-[200px] sm:w-[80px]
+                ${isOpen ? "w-[256px]" : "w-[80px]"}
+                `}
         >
             {/* Sidebar Header */}
             <div className="flex justify-between items-center p-4 transition-all">
                 <AnimatePresence>
+                    {/* Show title only on larger screens */}
                     {isOpen && (
                         <motion.h1
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -20 }}
                             transition={{ duration: 0.4, ease: "easeOut" }}
-                            className="font-bold text-xl"
+                            className="font-bold text-xl hidden sm:block"
                         >
                             My App
                         </motion.h1>
                     )}
                 </AnimatePresence>
 
+                {/* Expand/Collapse button only for larger screens */}
                 <motion.button
                     onClick={toggleSidebar}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    className="p-2 rounded-full border cursor-pointer transition-all hover:opacity-80"
+                    className="p-2 rounded-full border cursor-pointer transition-all hover:opacity-80 hidden sm:block"
                 >
                     {isOpen ? (
                         <FiChevronLeft className="text-lg" />
@@ -108,6 +110,7 @@ const Sidebar = () => {
                                 {link.icon}
                             </motion.span>
 
+                            {/* Hide text on mobile screens */}
                             <AnimatePresence>
                                 {isOpen && (
                                     <motion.span
@@ -118,7 +121,7 @@ const Sidebar = () => {
                                             duration: 0.4,
                                             ease: "easeOut",
                                         }}
-                                        className="text-md font-medium"
+                                        className="text-md font-medium hidden sm:block"
                                     >
                                         {link.name}
                                     </motion.span>
