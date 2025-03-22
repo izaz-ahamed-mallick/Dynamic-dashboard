@@ -22,12 +22,10 @@ const Input: React.FC<InputProps> = ({
 }) => {
     return (
         <div className="mb-6">
-            {/* Label */}
             <label className="block mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
                 {label}
             </label>
 
-            {/* Input Field */}
             <input
                 type={type}
                 placeholder={placeholder}
@@ -51,7 +49,6 @@ const Input: React.FC<InputProps> = ({
                 required
             />
 
-            {/* Animated Error Message */}
             <AnimatePresence>
                 {error && (
                     <motion.p

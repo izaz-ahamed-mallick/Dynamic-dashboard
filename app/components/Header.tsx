@@ -59,7 +59,6 @@ const Header = () => {
                 border-b shadow-md px-4 md:px-8 py-4 lg:py-5 flex flex-col md:flex-row 
                 items-center justify-between gap-6 transition-all`}
         >
-            {/* User Info */}
             <div className="flex items-center gap-4">
                 <motion.div
                     className="relative w-14 h-14 md:w-16 md:h-16 rounded-full border-4 border-blue-500 shadow-lg 
@@ -88,7 +87,6 @@ const Header = () => {
                 </div>
             </div>
 
-            {/* Actions */}
             <div className="flex items-center gap-4">
                 <ThemeSwitch />
 

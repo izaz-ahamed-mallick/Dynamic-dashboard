@@ -57,7 +57,6 @@ const DashboardContent: React.FC<Props> = ({ initialPosts }) => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            {/* Search Form */}
             <div className="mb-6">
                 <SearchForm
                     search={search}
@@ -66,12 +65,10 @@ const DashboardContent: React.FC<Props> = ({ initialPosts }) => {
                 />
             </div>
 
-            {/* Table */}
             <div className="overflow-x-auto sm:overflow-x-hidden">
                 <Table columns={["ID", "Title", "Body"]} data={filteredPosts} />
             </div>
 
-            {/* Pagination */}
             <div className="flex justify-center items-center mt-6">
                 <Pagination
                     initialPage={page}

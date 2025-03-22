@@ -15,7 +15,6 @@ const Pagination = ({
 }: PaginationProps) => {
     return (
         <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4">
-            {/* Previous Button */}
             <button
                 onClick={() => handlePageChange(initialPage - 1)}
                 disabled={initialPage <= 1}
@@ -29,12 +28,10 @@ const Pagination = ({
                 Previous
             </button>
 
-            {/* Page Number */}
             <span className="text-gray-800 dark:text-gray-300 font-medium">
                 Page {initialPage}
             </span>
 
-            {/* Next Button */}
             <button
                 onClick={() => handlePageChange(initialPage + 1)}
                 disabled={!hasMore}

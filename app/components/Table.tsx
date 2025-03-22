@@ -10,7 +10,6 @@ interface TableProps {
 const Table = ({ columns, data }: TableProps) => {
     return (
         <div className="overflow-hidden rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-            {/* Desktop & Tablet Table */}
             <div className="hidden md:block overflow-x-auto">
                 <table className="w-full border-collapse">
                     <thead>
@@ -64,7 +63,6 @@ const Table = ({ columns, data }: TableProps) => {
                 </table>
             </div>
 
-            {/* Mobile-friendly Cards */}
             <div className="md:hidden grid gap-6 p-4">
                 {data.length > 0 ? (
                     data.map((item, index) => (

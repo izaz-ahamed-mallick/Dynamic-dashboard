@@ -53,10 +53,8 @@ const Sidebar = () => {
                 ${isOpen ? "w-[256px]" : "w-[80px]"}
                 `}
         >
-            {/* Sidebar Header */}
             <div className="flex justify-between items-center p-4 transition-all">
                 <AnimatePresence>
-                    {/* Show title only on larger screens */}
                     {isOpen && (
                         <motion.h1
                             initial={{ opacity: 0, x: -20 }}
@@ -70,7 +68,6 @@ const Sidebar = () => {
                     )}
                 </AnimatePresence>
 
-                {/* Expand/Collapse button only for larger screens */}
                 <motion.button
                     onClick={toggleSidebar}
                     whileHover={{ scale: 1.1 }}
@@ -85,7 +82,6 @@ const Sidebar = () => {
                 </motion.button>
             </div>
 
-            {/* Navigation Links */}
             <nav className="flex flex-col gap-4 p-4">
                 {links.map((link) => (
                     <Link href={link.href} key={link.name}>
@@ -110,7 +106,6 @@ const Sidebar = () => {
                                 {link.icon}
                             </motion.span>
 
-                            {/* Hide text on mobile screens */}
                             <AnimatePresence>
                                 {isOpen && (
                                     <motion.span

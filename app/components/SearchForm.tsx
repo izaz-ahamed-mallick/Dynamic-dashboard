@@ -19,7 +19,6 @@ const SearchForm = ({ search, idFilter, onSearch }: SearchFormProps) => {
 
     return (
         <div className="flex flex-col md:flex-row items-center gap-4 mb-6">
-            {/* Search Input */}
             <div className="relative w-full md:w-1/2">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
                 <input
@@ -31,7 +30,6 @@ const SearchForm = ({ search, idFilter, onSearch }: SearchFormProps) => {
                 />
             </div>
 
-            {/* ID Filter Input */}
             <div className="relative w-full md:w-40">
                 <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
                 <input
@@ -43,7 +41,6 @@ const SearchForm = ({ search, idFilter, onSearch }: SearchFormProps) => {
                 />
             </div>
 
-            {/* Search Button */}
             <button
                 onClick={handleSearch}
                 className="w-full md:w-auto px-6 py-2 rounded-lg font-medium shadow-md transition hover:scale-105 active:scale-95 bg-blue-500 text-white hover:bg-blue-600"

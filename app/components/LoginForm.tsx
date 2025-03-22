@@ -48,13 +48,11 @@ const LoginForm = () => {
                     boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
                 }}
             >
-                {/* Header */}
                 <h2 className="text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
                     <FiLogIn style={{ color: "var(--foreground)" }} />
                     <span>Login</span>
                 </h2>
 
-                {/* Error Message */}
                 {error && (
                     <p
                         className="text-center mb-4 p-2 rounded-lg"
@@ -67,7 +65,6 @@ const LoginForm = () => {
                     </p>
                 )}
 
-                {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <Input
                         label="Email"
