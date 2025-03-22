@@ -34,10 +34,10 @@ const Table = ({ columns, data }: TableProps) => {
                                     {columns.map((col) => (
                                         <td
                                             key={col}
-                                            className="px-6 py-4 border-b text-gray-600 max-w-[300px] truncate"
+                                            className="px-6 py-4 border-b text-gray-600 max-w-[300px]"
                                         >
                                             <div
-                                                className="truncate cursor-pointer hover:underline"
+                                                className=" cursor-pointer hover:underline"
                                                 title={
                                                     item[col.toLowerCase()] ||
                                                     "-"
