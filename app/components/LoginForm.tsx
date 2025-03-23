@@ -90,7 +90,7 @@ const LoginForm = () => {
 
                     <button
                         type="submit"
-                        className="w-full font-semibold p-3 rounded-lg transition duration-300 shadow-lg transform hover:-translate-y-1"
+                        className="w-full cursor-pointer font-semibold p-3 rounded-lg transition duration-300 shadow-lg transform hover:-translate-y-1"
                         style={{
                             background: "var(--foreground)",
                             color: "var(--background)",

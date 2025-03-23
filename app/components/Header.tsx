@@ -92,7 +92,7 @@ const Header = () => {
 
                 <motion.button
                     onClick={handleLogout}
-                    className="flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 rounded-lg shadow-md 
+                    className="flex items-center cursor-pointer gap-2 px-5 py-2.5 md:px-6 md:py-3 rounded-lg shadow-md 
                         bg-red-500 text-white font-medium 
                         hover:bg-red-600 transition-all"
                     whileHover={{ scale: 1.05, boxShadow: "0 0 12px #ff4d4d" }}
